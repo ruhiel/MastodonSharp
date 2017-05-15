@@ -49,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\MethodAttribute.cs" />
     <Compile Include="Attributes\QueryAttribute.cs" />
     <Compile Include="Entity\Account.cs" />
     <Compile Include="Entity\Application.cs" />

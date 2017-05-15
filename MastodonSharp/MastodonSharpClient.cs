@@ -24,9 +24,8 @@ namespace MastodonSharp
             _Host = host;
             _AccessToken = accessToken;
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/accounts/{id}")]
+        
+        [Query(Method.GET, "/api/v1/accounts/{id}")]
         public async Task<Account> GetAccount(int id)
         {
             var response = await Execute<Account>(nameof(GetAccount),
@@ -35,18 +34,16 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/accounts/verify_credentials")]
+        
+        [Query(Method.GET, "/api/v1/accounts/verify_credentials")]
         public async Task<Account> GetCurrentAccount()
         {
             var response = await Execute<Account>(nameof(GetCurrentAccount));
 
             return response.Data;
         }
-
-        [Method(Method.PATCH)]
-        [Query("/api/v1/accounts/update_credentials")]
+        
+        [Query(Method.PATCH, "/api/v1/accounts/update_credentials")]
         public async Task<Account> UpdateAccount(string display_name = null, string note = null, string avatar = null, string header = null)
         {
             var response = await Execute<Account>(nameof(UpdateAccount),
@@ -54,9 +51,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/accounts/{id}/followers")]
+        
+        [Query(Method.GET, "/api/v1/accounts/{id}/followers")]
         public async Task<List<Account>> GetFollowers(int id, int? max_id = null, int? since_id = null, int? limit = null)
         {
             var response = await Execute<List<Account>>(nameof(GetFollowers),
@@ -65,9 +61,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/accounts/{id}/following")]
+        
+        [Query(Method.GET, "/api/v1/accounts/{id}/following")]
         public async Task<List<Account>> GetFollowing(int id, int? max_id = null, int? since_id = null, int? limit = null)
         {
             var response = await Execute<List<Account>>(nameof(GetFollowing),
@@ -76,9 +71,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/accounts/{id}/statuses")]
+        
+        [Query(Method.GET, "/api/v1/accounts/{id}/statuses")]
         public async Task<List<Status>> GetAccountsStatuses(int id, bool? only_media = null, bool? exclude_replies = null, int? max_id = null, int? since_id = null, int? limit = null)
         {
             var response = await Execute<List<Status>> (nameof(GetAccountsStatuses),
@@ -87,9 +81,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.POST)]
-        [Query("/api/v1/accounts/{id}/follow")]
+        
+        [Query(Method.POST, "/api/v1/accounts/{id}/follow")]
         public async Task<Relationship> Follow(int id)
         {
             var response = await Execute<Relationship>(nameof(Follow),
@@ -98,9 +91,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.POST)]
-        [Query("/api/v1/accounts/{id}/unfollow")]
+        
+        [Query(Method.POST, "/api/v1/accounts/{id}/unfollow")]
         public async Task<Relationship> Unfollow(int id)
         {
             var response = await Execute<Relationship>(nameof(Unfollow),
@@ -109,9 +101,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.POST)]
-        [Query("/api/v1/accounts/{id}/block")]
+        
+        [Query(Method.POST, "/api/v1/accounts/{id}/block")]
         public async Task<Relationship> Block(int id)
         {
             var response = await Execute<Relationship>(nameof(Block),
@@ -120,9 +111,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.POST)]
-        [Query("/api/v1/accounts/{id}/unblock")]
+        
+        [Query(Method.POST, "/api/v1/accounts/{id}/unblock")]
         public async Task<Relationship> UnBlock(int id)
         {
             var response = await Execute<Relationship>(nameof(UnBlock),
@@ -131,9 +121,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.POST)]
-        [Query("/api/v1/accounts/{id}/mute")]
+        
+        [Query(Method.POST, "/api/v1/accounts/{id}/mute")]
         public async Task<Relationship> Mute(int id)
         {
             var response = await Execute<Relationship>(nameof(Mute),
@@ -142,9 +131,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.POST)]
-        [Query("/api/v1/accounts/{id}/unmute")]
+        
+        [Query(Method.POST, "/api/v1/accounts/{id}/unmute")]
         public async Task<Relationship> UnMute(int id)
         {
             var response = await Execute<Relationship>(nameof(UnMute),
@@ -153,9 +141,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/accounts/relationships")]
+        
+        [Query(Method.GET, "/api/v1/accounts/relationships")]
         public async Task<List<Relationship>> GetRelationships(int id)
         {
             var method = GetAllMethod(nameof(GetRelationships), new Type[] { typeof(int) });
@@ -164,9 +151,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/accounts/relationships")]
+        
+        [Query(Method.GET, "/api/v1/accounts/relationships")]
         public async Task<List<Relationship>> GetRelationships(IEnumerable<int> id)
         {
             var method = GetAllMethod(nameof(GetRelationships), new Type[] { typeof(IEnumerable<int>) });
@@ -175,9 +161,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/accounts/search")]
+        
+        [Query(Method.GET, "/api/v1/accounts/search")]
         public async Task<List<Account>> SearchAccount(string q, int limit = 40)
         {
             var response = await Execute<List<Account>>(nameof(SearchAccount),
@@ -185,9 +170,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.POST)]
-        [Query("/api/v1/apps")]
+        
+        [Query(Method.POST, "/api/v1/apps")]
         public async Task<AppRegistration> Register(string client_name, OAuthScope scopes, string redirect_uris = "urn:ietf:wg:oauth:2.0:oob", string website = null)
         {
             var response = await Execute<AppRegistration>(nameof(Register),
@@ -197,9 +181,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/blocks")]
+        
+        [Query(Method.GET, "/api/v1/blocks")]
         public async Task<StreamContent<Account>> GetBlocks(int? max_id = null, int? since_id = null, int? limit = null)
         {
             var response = await Execute<List<Account>>(nameof(GetBlocks),
@@ -207,9 +190,8 @@ namespace MastodonSharp
 
             return CreateStreamContent(response);
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/favourites")]
+        
+        [Query(Method.GET, "/api/v1/favourites")]
         public async Task<StreamContent<Status>> GetFavourites(int? max_id = null, int? since_id = null, int? limit = null)
         {
             var response = await Execute<List<Status>>(nameof(GetFavourites),
@@ -217,9 +199,8 @@ namespace MastodonSharp
 
             return CreateStreamContent(response);
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/follow_requests")]
+        
+        [Query(Method.GET, "/api/v1/follow_requests")]
         public async Task<StreamContent<Account>> GetFollowRequests(int? max_id = null, int? since_id = null, int? limit = null)
         {
             var response = await Execute<List<Account>>(nameof(GetFollowRequests),
@@ -227,26 +208,24 @@ namespace MastodonSharp
 
             return CreateStreamContent(response);
         }
-
-        [Method(Method.POST)]
-        [Query("/api/v1/follow_requests/{id}/authorize")]
+        
+        [Query(Method.POST, "/api/v1/follow_requests/{id}/authorize")]
         public async Task AuthorizeFollowRequest(int id)
         {
             await Execute(nameof(AuthorizeFollowRequest),
                 null,
                 new { id });
         }
-
-        [Method(Method.POST)]
-        [Query("/api/v1/follow_requests/{id}/reject")]
+        
+        [Query(Method.POST, "/api/v1/follow_requests/{id}/reject")]
         public async Task RejectFollowRequest(int id)
         {
             await Execute(nameof(RejectFollowRequest),
                 null,
                 new { id });
         }
-        [Method(Method.POST)]
-        [Query("/api/v1/follows")]
+
+        [Query(Method.POST, "/api/v1/follows")]
         public async Task<Account> FollowRemoteUser(string uri)
         {
             var response = await Execute<Account>(nameof(FollowRemoteUser),
@@ -255,17 +234,15 @@ namespace MastodonSharp
             return response.Data;
         }
 
-        [Method(Method.GET)]
-        [Query("/api/v1/instance")]
+        [Query(Method.GET, "/api/v1/instance")]
         public async Task<Instance> GetInstance()
         {
             var response = await Execute<Instance>(nameof(GetInstance));
 
             return response.Data;
         }
-
-        [Method(Method.POST)]
-        [Query("/api/v1/media")]
+        
+        [Query(Method.POST, "/api/v1/media")]
         public async Task<Attachment> UploadMedia(FileInfo file)
         {
             var response = await Execute<Attachment>(nameof(UploadMedia),
@@ -273,9 +250,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/mutes")]
+        
+        [Query(Method.GET, "/api/v1/mutes")]
         public async Task<List<Account>> GetMutes(int? max_id = null, int? since_id = null, int? limit = null)
         {
             var response = await Execute<List<Account>>(nameof(GetMutes),
@@ -283,9 +259,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/notifications")]
+        
+        [Query(Method.GET, "/api/v1/notifications")]
         public async Task<StreamContent<Notification>> GetNotifications(int? max_id = null, int? since_id = null, int? limit = null)
         {
             var response = await Execute<List<Notification>>(nameof(GetNotifications),
@@ -294,8 +269,7 @@ namespace MastodonSharp
             return CreateStreamContent(response);
         }
 
-        [Method(Method.GET)]
-        [Query("/api/v1/notifications/{id}")]
+        [Query(Method.GET, "/api/v1/notifications/{id}")]
         public async Task<Notification> GetNotification(int id)
         {
             var response = await Execute<Notification>(nameof(GetNotification),
@@ -304,25 +278,22 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.POST)]
-        [Query("/api/v1/notifications/clear")]
+        
+        [Query(Method.POST, "/api/v1/notifications/clear")]
         public async Task ClearNotifications()
         {
             await Execute(nameof(ClearNotifications));
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/reports")]
+        
+        [Query(Method.GET, "/api/v1/reports")]
         public async Task<List<Report>> GetReports()
         {
             var response = await Execute<List<Report>>(nameof(GetReports));
 
             return response.Data;
         }
-
-        [Method(Method.POST)]
-        [Query("/api/v1/reports")]
+        
+        [Query(Method.POST, "/api/v1/reports")]
         public async Task<Report> Report(int account_id, IEnumerable<int> status_ids, string comment)
         {
             var response = await Execute<Report>(nameof(Report),
@@ -330,9 +301,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/search")]
+        
+        [Query(Method.GET, "/api/v1/search")]
         public async Task<Results> Search(string q, bool resolve = false)
         {
             var response = await Execute<Results>(nameof(Search),
@@ -341,8 +311,7 @@ namespace MastodonSharp
             return response.Data;
         }
 
-        [Method(Method.GET)]
-        [Query("/api/v1/statuses/{id}")]
+        [Query(Method.GET, "/api/v1/statuses/{id}")]
         public async Task<Status> GetStatus(int id)
         {
             var response = await Execute<Status>(nameof(GetStatus),
@@ -351,9 +320,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/statuses/{id}/context")]
+        
+        [Query(Method.GET, "/api/v1/statuses/{id}/context")]
         public async Task<Context> GetStatusContext(int id)
         {
             var response = await Execute<Context>(nameof(GetStatusContext),
@@ -362,9 +330,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/statuses/{id}/card")]
+        
+        [Query(Method.GET, "/api/v1/statuses/{id}/card")]
         public async Task<Card> GetStatusCard(int id)
         {
             var response = await Execute<Card>(nameof(GetStatusCard),
@@ -373,9 +340,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/statuses/{id}/reblogged_by")]
+        
+        [Query(Method.GET, "/api/v1/statuses/{id}/reblogged_by")]
         public async Task<List<Account>> GetRebloggedStatus(int id, int? max_id = null, int? since_id = null, int? limit = null)
         {
             var response = await Execute<List<Account>> (nameof(GetRebloggedStatus),
@@ -384,9 +350,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/statuses/{id}/favourited_by")]
+        
+        [Query(Method.GET, "/api/v1/statuses/{id}/favourited_by")]
         public async Task<List<Account>> GetFavouritedStatus(int id, int? max_id = null, int? since_id = null, int? limit = null)
         {
             var response = await Execute<List<Account>>(nameof(GetFavouritedStatus),
@@ -395,9 +360,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.POST)]
-        [Query("/api/v1/statuses")]
+        
+        [Query(Method.POST, "/api/v1/statuses")]
         public async Task<Status> PostStatus(string status, int? in_reply_to_id = null, IEnumerable<int> media_ids = null, bool? sensitive = null, string spoiler_text = null, Visibility? visibility = null)
         {
             var response = await Execute<Status>(nameof(PostStatus),
@@ -405,18 +369,16 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.DELETE)]
-        [Query("/api/v1/statuses/{id}")]
+        
+        [Query(Method.DELETE, "/api/v1/statuses/{id}")]
         public Task DeleteStatus(int id)
         {
             return Execute(nameof(DeleteStatus),
                 null,
                 new { id });
         }
-
-        [Method(Method.POST)]
-        [Query("/api/v1/statuses/{id}/reblog")]
+        
+        [Query(Method.POST, "/api/v1/statuses/{id}/reblog")]
         public async Task<Status> Reblog(int id)
         {
             var response = await Execute<Status>(nameof(Reblog),
@@ -425,9 +387,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.POST)]
-        [Query("/api/v1/statuses/{id}/unreblog")]
+        
+        [Query(Method.POST, "/api/v1/statuses/{id}/unreblog")]
         public async Task<Status> UnReblog(int id)
         {
             var response = await Execute<Status>(nameof(UnReblog),
@@ -436,9 +397,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.POST)]
-        [Query("/api/v1/statuses/{id}/favourite")]
+        
+        [Query(Method.POST, "/api/v1/statuses/{id}/favourite")]
         public async Task<Status> Favourite(int id)
         {
             var response = await Execute<Status>(nameof(Favourite),
@@ -447,9 +407,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.POST)]
-        [Query("/api/v1/statuses/{id}/unfavourite")]
+        
+        [Query(Method.POST, "/api/v1/statuses/{id}/unfavourite")]
         public async Task<Status> UnFavourite(int id)
         {
             var response = await Execute<Status>(nameof(UnFavourite),
@@ -458,9 +417,8 @@ namespace MastodonSharp
 
             return response.Data;
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/timelines/home")]
+        
+        [Query(Method.GET, "/api/v1/timelines/home")]
         public async Task<StreamContent<Status>> GetHomeTimeline(int? max_id = null, int? since_id = null, int? limit = null)
         {
             var response = await Execute<List<Status>>(nameof(GetHomeTimeline),
@@ -468,9 +426,8 @@ namespace MastodonSharp
 
             return CreateStreamContent(response);
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/timelines/public")]
+        
+        [Query(Method.GET, "/api/v1/timelines/public")]
         public async Task<StreamContent<Status>> GetPublicTimeline(bool? local = null, int? max_id = null, int? since_id = null, int? limit = 20)
         {
             var response = await Execute<List<Status>>(nameof(GetPublicTimeline),
@@ -478,9 +435,8 @@ namespace MastodonSharp
 
             return CreateStreamContent(response);
         }
-
-        [Method(Method.GET)]
-        [Query("/api/v1/timelines/tag/{hashtag}")]
+        
+        [Query(Method.GET, "/api/v1/timelines/tag/{hashtag}")]
         public async Task<StreamContent<Status>> GetHashtagTimeline(string hashtag, bool? local = null, int? max_id = null, int? since_id = null, int? limit = null)
         {
             var response = await Execute<List<Status>>(nameof(GetHashtagTimeline),
@@ -490,25 +446,17 @@ namespace MastodonSharp
             return CreateStreamContent(response);
         }
 
-        private Method GetMethod(MethodBase methodBase)
-        {
-            var methodAttribute = (MethodAttribute)methodBase.GetCustomAttribute(typeof(MethodAttribute));
-            return methodAttribute.Method;
-        }
-
-        private string GetQuery(MethodBase methodBase)
+        private (string query, Method method) GetQuery(MethodBase methodBase)
         {
             var queryAttribute = (QueryAttribute)methodBase.GetCustomAttribute(typeof(QueryAttribute));
-            return queryAttribute.Query;
+            return (queryAttribute.Query, queryAttribute.Method);
         }
 
         private Task<IRestResponse<T>> Execute<T>(MethodBase methodBase, object parameter = null, object urlSegment = null) where T : new()
         {
             var client = new RestClient($"https://{_Host}");
 
-            var query = GetQuery(methodBase);
-
-            var method = GetMethod(methodBase);
+            (var query, var method) = GetQuery(methodBase);
 
             var request = CreateRequest(query, method, parameter, urlSegment);
 
@@ -519,9 +467,7 @@ namespace MastodonSharp
         {
             var client = new RestClient($"https://{_Host}");
 
-            var query = GetQuery(methodBase);
-
-            var method = GetMethod(methodBase);
+            (var query, var method) = GetQuery(methodBase);
 
             var request = CreateRequest(query, method, parameter, urlSegment);
 
