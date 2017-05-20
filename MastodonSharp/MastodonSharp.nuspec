@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>MastodonSharp</id>
+        <version>0.0.1</version>
+        <title>MastodonSharp</title>
+        <authors>Ruhiel</authors>
+        <licenseUrl>https://github.com/ruhiel/MastodonSharp</licenseUrl>
+        <projectUrl>https://github.com/ruhiel/MastodonSharp</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Mastodon Library for C#</description>
+        <dependencies>
+            <dependency id="FastMember" version="1.1.0" />
+            <dependency id="Newtonsoft.Json" version="10.0.2" />
+            <dependency id="RestSharp" version="105.2.3" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\Release\MastodonSharp.dll" target="lib\MastodonSharp.dll" />
+    </files>
+</package>
