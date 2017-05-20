@@ -1,6 +1,7 @@
 ﻿using MastodonSharp.Attributes;
 using MastodonSharp.Entity;
 using MastodonSharp.Extentions;
+using MastodonSharp.Streaming;
 using RestSharp;
 using System;
 using System.Collections;
@@ -435,7 +436,7 @@ namespace MastodonSharp
 
             return CreateStreamContent(response);
         }
-        
+
         [Query(Method.GET, "/api/v1/timelines/tag/{hashtag}")]
         public async Task<StreamContent<Status>> GetHashtagTimeline(string hashtag, bool? local = null, int? max_id = null, int? since_id = null, int? limit = null)
         {
@@ -444,6 +445,42 @@ namespace MastodonSharp
                 new { hashtag });
 
             return CreateStreamContent(response);
+        }
+
+        [Query(Method.GET, "/api/v1/streaming/public")]
+        public TimelineStreaming GetPublicTimelineStreaming()
+        {
+            var methodBase = GetAllMethod(nameof(GetPublicTimelineStreaming));
+
+            (var query, var method) = GetQuery(methodBase);
+
+            var url = $"{_Host}{query}";
+
+            return new TimelineStreaming(url, _AccessToken);
+        }
+
+        [Query(Method.GET, "/api/v1/streaming/user")]
+        public TimelineStreaming GetUserTimelineStreaming()
+        {
+            var methodBase = GetAllMethod(nameof(GetPublicTimelineStreaming));
+
+            (var query, var method) = GetQuery(methodBase);
+
+            var url = $"{_Host}{query}";
+
+            return new TimelineStreaming(url, _AccessToken);
+        }
+
+        [Query(Method.GET, "/api/v1/streaming/hashtag")]
+        public TimelineStreaming GetHashTagTimelineStreaming(string tag)
+        {
+            var methodBase = GetAllMethod(nameof(GetPublicTimelineStreaming));
+
+            (var query, var method) = GetQuery(methodBase);
+
+            var url = $"{_Host}{query}?tag={tag}";
+
+            return new TimelineStreaming(url, _AccessToken);
         }
 
         private (string query, Method method) GetQuery(MethodBase methodBase)
