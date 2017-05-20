@@ -454,7 +454,7 @@ namespace MastodonSharp
 
             (var query, var method) = GetQuery(methodBase);
 
-            var url = $"{_Host}{query}";
+            var url = $"https://{_Host}{query}";
 
             return new TimelineStreaming(url, _AccessToken);
         }
@@ -466,7 +466,7 @@ namespace MastodonSharp
 
             (var query, var method) = GetQuery(methodBase);
 
-            var url = $"{_Host}{query}";
+            var url = $"https://{_Host}{query}";
 
             return new TimelineStreaming(url, _AccessToken);
         }
@@ -478,7 +478,7 @@ namespace MastodonSharp
 
             (var query, var method) = GetQuery(methodBase);
 
-            var url = $"{_Host}{query}?tag={tag}";
+            var url = $"https://{_Host}{query}?tag={tag}";
 
             return new TimelineStreaming(url, _AccessToken);
         }
