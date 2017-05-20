@@ -452,9 +452,9 @@ namespace MastodonSharp
         {
             var methodBase = GetAllMethod(nameof(GetPublicTimelineStreaming));
 
-            (var query, var method) = GetQuery(methodBase);
+            var query = GetQuery(methodBase);
 
-            var url = $"https://{_Host}{query}";
+            var url = $"https://{_Host}{query.Item1}";
 
             return new TimelineStreaming(url, _AccessToken);
         }
@@ -464,9 +464,9 @@ namespace MastodonSharp
         {
             var methodBase = GetAllMethod(nameof(GetPublicTimelineStreaming));
 
-            (var query, var method) = GetQuery(methodBase);
+            var query = GetQuery(methodBase);
 
-            var url = $"https://{_Host}{query}";
+            var url = $"https://{_Host}{query.Item1}";
 
             return new TimelineStreaming(url, _AccessToken);
         }
@@ -476,26 +476,26 @@ namespace MastodonSharp
         {
             var methodBase = GetAllMethod(nameof(GetPublicTimelineStreaming));
 
-            (var query, var method) = GetQuery(methodBase);
+            var query = GetQuery(methodBase);
 
-            var url = $"https://{_Host}{query}?tag={tag}";
+            var url = $"https://{_Host}{query.Item1}?tag={tag}";
 
             return new TimelineStreaming(url, _AccessToken);
         }
 
-        private (string query, Method method) GetQuery(MethodBase methodBase)
+        private Tuple<string , Method> GetQuery(MethodBase methodBase)
         {
             var queryAttribute = (QueryAttribute)methodBase.GetCustomAttribute(typeof(QueryAttribute));
-            return (queryAttribute.Query, queryAttribute.Method);
+            return Tuple.Create(queryAttribute.Query, queryAttribute.Method);
         }
 
         private Task<IRestResponse<T>> Execute<T>(MethodBase methodBase, object parameter = null, object urlSegment = null) where T : new()
         {
             var client = new RestClient($"https://{_Host}");
 
-            (var query, var method) = GetQuery(methodBase);
+            var query = GetQuery(methodBase);
 
-            var request = CreateRequest(query, method, parameter, urlSegment);
+            var request = CreateRequest(query.Item1, query.Item2, parameter, urlSegment);
 
             return client.ExecuteTaskAsync<T>(request);
         }
@@ -504,9 +504,9 @@ namespace MastodonSharp
         {
             var client = new RestClient($"https://{_Host}");
 
-            (var query, var method) = GetQuery(methodBase);
+            var query = GetQuery(methodBase);
 
-            var request = CreateRequest(query, method, parameter, urlSegment);
+            var request = CreateRequest(query.Item1, query.Item2, parameter, urlSegment);
 
             return client.ExecuteTaskAsync(request);
         }
@@ -608,8 +608,8 @@ namespace MastodonSharp
 
             streamContent.Content = response.Data;
             var header = linkHeader.Value.ToString().GetHeader();
-            streamContent.Next = header.next;
-            streamContent.Prev = header.prev;
+            streamContent.Next = header.Item1;
+            streamContent.Prev = header.Item2;
 
             return streamContent;
         }

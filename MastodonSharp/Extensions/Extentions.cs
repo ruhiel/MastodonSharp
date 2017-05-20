@@ -28,7 +28,7 @@ namespace MastodonSharp.Extentions
         private static readonly string OPERATOR_PREV = "prev";
         private static readonly string LINKPATTERN = "<(?<url>.*)>; *rel=\\\"(?<operator>.*)\\\"";
 
-        public static (int? next, int? prev) GetHeader(this string header)
+        public static Tuple<int?, int?> GetHeader(this string header)
         {
             var headerGroup = GetUrlsOperation(header);
             int? next = null;
@@ -46,7 +46,7 @@ namespace MastodonSharp.Extentions
                 prev = GetPrevId(queries);
             }
 
-            return (next, prev);
+            return Tuple.Create(next, prev);
         }
 
         public static IDictionary<string, string> GetUrlsOperation(string header)
