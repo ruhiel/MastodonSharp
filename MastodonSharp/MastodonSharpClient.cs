@@ -178,7 +178,7 @@ namespace MastodonSharp
             var response = await Execute<AppRegistration>(nameof(Register),
                 new { client_name, redirect_uris, scopes, website });
 
-            response.Data.AuthUrl = OAuthUrl(_Host, response.Data.ClientId, scopes, response.Data.RedirectUri);
+            response.Data.AuthUrl = OAuthUrl(response.Data.ClientId, scopes, response.Data.RedirectUri);
 
             return response.Data;
         }
@@ -595,9 +595,9 @@ namespace MastodonSharp
             return request;
         }
 
-        public string OAuthUrl(string host, string clientid, OAuthScope scope, string redirectUri)
+        private string OAuthUrl(string clientid, OAuthScope scope, string redirectUri)
         {
-            return $"https://{host}/oauth/authorize?response_type=code&client_id={clientid}&scope={scope.ToString().Replace(" ", "%20")}&redirect_uri={redirectUri}";
+            return $"https://{_Host}/oauth/authorize?response_type=code&client_id={clientid}&scope={scope.ToString().Replace(" ", "%20")}&redirect_uri={redirectUri}";
         }
 
         private StreamContent<T> CreateStreamContent<T>(IRestResponse<List<T>> response)
