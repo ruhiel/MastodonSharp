@@ -1,4 +1,5 @@
 # MastodonSharp
+MastodonSharp is Mastodon Wrapper Library for C#
 
 # Usage
 ```
@@ -22,9 +23,6 @@ private static void Streaming_OnUpdate(object sender, MastodonSharp.Streaming.St
     Console.WriteLine(e.Status.Content);
 }
 ```
-
-# MastodonSharp
-MastodonSharp is Mastodon Wrapper Library for C#
 
 ## License
 MIT
