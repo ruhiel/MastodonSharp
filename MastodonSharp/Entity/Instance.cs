@@ -30,5 +30,11 @@ namespace MastodonSharp.Entity
         /// </summary>
         [DeserializeAs(Name = "email")]
         public string Email { get; set; }
+
+        /// <summary>
+        /// The instance's version
+        /// </summary>
+        [DeserializeAs(Name = "version")]
+        public string Version { get; set; }
     }
 }

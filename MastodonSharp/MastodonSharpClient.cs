@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace MastodonSharp
 {
+    /// <summary>
+    /// https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md
+    /// </summary>
     public class MastodonSharpClient
     {
         protected string _Host;
@@ -179,6 +182,10 @@ namespace MastodonSharp
                 new { client_name, redirect_uris, scopes, website });
 
             response.Data.AuthUrl = OAuthUrl(response.Data.ClientId, scopes, response.Data.RedirectUri);
+
+            response.Data.Scope = scopes;
+
+            response.Data.Instance = _Host;
 
             return response.Data;
         }
