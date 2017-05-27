@@ -48,6 +48,24 @@ namespace MastodonSharp.Test
         }
 
         [TestMethod]
+        public async Task TestGetInstance()
+        {
+            var client = new MastodonSharpClient(_Host, _AccessToken);
+
+            var result = await client.GetInstance();
+
+            Assert.IsNotNull(result.Description);
+
+            Assert.IsNotNull(result.Email);
+
+            Assert.IsNotNull(result.Title);
+
+            Assert.IsNotNull(result.Uri);
+
+            Assert.IsNotNull(result.Version);
+        }
+
+        [TestMethod]
         public async Task TestRegister()
         {
             var client = new MastodonSharpClient(_Host, _AccessToken);
@@ -59,7 +77,39 @@ namespace MastodonSharp.Test
             Assert.IsNotNull(result.ClientId);
 
             Assert.IsNotNull(result.ClientSecret);
+
+            Assert.IsNotNull(result.AuthUrl);
+
+            Assert.IsNotNull(result.RedirectUri);
+
+            Assert.IsNotNull(result.Scope);
+
+            Assert.IsNotNull(result.Instance);
         }
 
+        [TestMethod]
+        public async Task MyMute()
+        {
+            var client = new MastodonSharpClient(_Host, _AccessToken);
+            var result = await client.Mute(_TestTargetUserId);
+
+            Assert.IsNotNull(result.Blocking);
+
+            Assert.IsNotNull(result.DomainBlocking);
+
+            Assert.IsNotNull(result.FollowedBy);
+
+            Assert.IsNotNull(result.Following);
+
+            Assert.IsNotNull(result.Id);
+
+            Assert.IsNotNull(result.Muting);
+
+            Assert.IsNotNull(result.MutingBoosts);
+
+            Assert.IsNotNull(result.Requested);
+
+            await client.UnMute(_TestTargetUserId);
+        }
     }
 }

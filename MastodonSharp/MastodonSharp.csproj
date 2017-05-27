@@ -54,7 +54,6 @@
     <Compile Include="Entity\Application.cs" />
     <Compile Include="Entity\AppRegistration.cs" />
     <Compile Include="Entity\Attachment.cs" />
-    <Compile Include="Entity\Auth.cs" />
     <Compile Include="Entity\Card.cs" />
     <Compile Include="Entity\Context.cs" />
     <Compile Include="Entity\Error.cs" />

@@ -30,30 +30,6 @@ namespace MastodonSharp.Entity
         public string DisplayName { get; set; }
 
         /// <summary>
-        /// Biography of user
-        /// </summary>
-        [DeserializeAs(Name = "note")]
-        public string Note { get; set; }
-
-        /// <summary>
-        /// URL of the user's profile page (can be remote)
-        /// </summary>
-        [DeserializeAs(Name = "url")]
-        public string ProfileUrl { get; set; }
-
-        /// <summary>
-        /// URL to the avatar image
-        /// </summary>
-        [DeserializeAs(Name = "avatar")]
-        public string AvatarUrl { get; set; }
-
-        /// <summary>
-        /// URL to the header image
-        /// </summary>
-        [DeserializeAs(Name = "header")]
-        public string HeaderUrl { get; set; }
-
-        /// <summary>
         /// Boolean for when the account cannot be followed without waiting for approval first
         /// </summary>
         [DeserializeAs(Name = "locked")]
@@ -82,5 +58,41 @@ namespace MastodonSharp.Entity
         /// </summary>
         [DeserializeAs(Name = "statuses_count")]
         public int StatusesCount { get; set; }
+
+        /// <summary>
+        /// Biography of user
+        /// </summary>
+        [DeserializeAs(Name = "note")]
+        public string Note { get; set; }
+
+        /// <summary>
+        /// URL of the user's profile page (can be remote)
+        /// </summary>
+        [DeserializeAs(Name = "url")]
+        public string ProfileUrl { get; set; }
+
+        /// <summary>
+        /// URL to the avatar image
+        /// </summary>
+        [DeserializeAs(Name = "avatar")]
+        public string AvatarUrl { get; set; }
+
+        /// <summary>
+        /// URL to the avatar static image (gif)
+        /// </summary>
+        [DeserializeAs(Name = "avatar_static")]
+        public string AvatarStaticUrl { get; set; }
+
+        /// <summary>
+        /// URL to the header image
+        /// </summary>
+        [DeserializeAs(Name = "header")]
+        public string HeaderUrl { get; set; }
+
+        /// <summary>
+        /// URL to the header image
+        /// </summary>
+        [DeserializeAs(Name = "header_static")]
+        public string HeaderStaticUrl { get; set; }
     }
 }

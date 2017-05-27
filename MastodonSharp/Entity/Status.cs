@@ -127,5 +127,11 @@ namespace MastodonSharp.Entity
         [DeserializeAs(Name = "application")]
         public Application Application { get; set; }
 
+        /// <summary>
+        /// Application from which the status was posted
+        /// </summary>
+        [DeserializeAs(Name = "language")]
+        public string Language { get; set; }
+
     }
 }
