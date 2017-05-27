@@ -8,6 +8,12 @@ namespace MastodonSharp.Entity
     public class Relationship
     {
         /// <summary>
+        /// Target account id
+        /// </summary>
+        [DeserializeAs(Name = "id")]
+        public int Id { get; set; }
+
+        /// <summary>
         /// Whether the user is currently following the account
         /// </summary>
         [DeserializeAs(Name = "following")]
@@ -32,9 +38,21 @@ namespace MastodonSharp.Entity
         public bool Muting { get; set; }
 
         /// <summary>
+        /// Whether the user is currently muting the account
+        /// </summary>
+        [DeserializeAs(Name = "muting_boosts")]
+        public bool MutingBoosts { get; set; }
+
+        /// <summary>
         /// Whether the user has requested to follow the account
         /// </summary>
         [DeserializeAs(Name = "requested")]
         public bool Requested { get; set; }
+
+        /// <summary>
+        /// Whether the user has requested to follow the account
+        /// </summary>
+        [DeserializeAs(Name = "domain_blocking")]
+        public bool DomainBlocking { get; set; }
     }
 }

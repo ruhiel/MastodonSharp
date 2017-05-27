@@ -8,12 +8,6 @@ namespace MastodonSharp.Entity
     public class Mention
     {
         /// <summary>
-        /// Account ID
-        /// </summary>
-        [DeserializeAs(Name = "id")]
-        public int Id { get; set; }
-
-        /// <summary>
         /// URL of user's profile (can be remote)
         /// </summary>
         [DeserializeAs(Name = "url")]
@@ -30,6 +24,12 @@ namespace MastodonSharp.Entity
         /// </summary>
         [DeserializeAs(Name = "acct")]
         public string AccountName { get; set; }
+
+        /// <summary>
+        /// Account ID
+        /// </summary>
+        [DeserializeAs(Name = "id")]
+        public int Id { get; set; }
 
     }
 }

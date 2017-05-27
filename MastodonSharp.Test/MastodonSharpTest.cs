@@ -87,5 +87,29 @@ namespace MastodonSharp.Test
             Assert.IsNotNull(result.Instance);
         }
 
+        [TestMethod]
+        public async Task MyMute()
+        {
+            var client = new MastodonSharpClient(_Host, _AccessToken);
+            var result = await client.Mute(_TestTargetUserId);
+
+            Assert.IsNotNull(result.Blocking);
+
+            Assert.IsNotNull(result.DomainBlocking);
+
+            Assert.IsNotNull(result.FollowedBy);
+
+            Assert.IsNotNull(result.Following);
+
+            Assert.IsNotNull(result.Id);
+
+            Assert.IsNotNull(result.Muting);
+
+            Assert.IsNotNull(result.MutingBoosts);
+
+            Assert.IsNotNull(result.Requested);
+
+            await client.UnMute(_TestTargetUserId);
+        }
     }
 }

@@ -30,5 +30,11 @@ namespace MastodonSharp.Entity
         /// </summary>
         [DeserializeAs(Name = "image")]
         public string Image { get; set; }
+
+        /// <summary>
+        /// "link", "photo", "video", or "rich"
+        /// </summary>
+        [DeserializeAs(Name = "type")]
+        public string Type { get; set; }
     }
 }
